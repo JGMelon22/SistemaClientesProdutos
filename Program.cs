@@ -1,4 +1,5 @@
 using System.Data;
+using FluentValidation.AspNetCore;
 using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,9 @@ builder.Services.AddControllersWithViews();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+// Fluent Validation
+builder.Services.AddFluentValidationAutoValidation();
 
 // SlqClient
 builder.Services.AddScoped<IDbConnection>(x =>
