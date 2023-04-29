@@ -85,7 +85,7 @@ public class ClientRepository : IClientRepository
         _dbConnection.Open();
 
         var client =
-            await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClient, new { Id = updatedClient.Id });
+            await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClient, new { updatedClient.Id });
 
         if (client == null)
         {

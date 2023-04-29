@@ -1,5 +1,5 @@
-using System.Data;
 using ClientesProdutos.Infrastructure.Repositories;
+using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Interfaces;
 using FluentValidation.AspNetCore;
 using Microsoft.Data.SqlClient;
@@ -14,6 +14,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<IValidator<AddClientViewModel>, AddClientValidator>();
+builder.Services.AddScoped<IValidator<UpdateClientViewModel>, UpdateClientValidator>();
 
 // SlqClient
 builder.Services.AddScoped<IDbConnection>(x =>

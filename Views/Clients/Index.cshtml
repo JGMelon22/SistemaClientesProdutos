@@ -1,0 +1,53 @@
+@model IEnumerable<GetClientViewModel>
+
+<div class="text-primary">Clients List</div>
+<br/>
+
+<form asp-action="Index" method="get">
+    <table class="table table-hover table-striped">
+        <thead>
+        <td>
+            @Html.DisplayNameFor(model => model.Id)
+        </td>
+        <td>
+            @Html.DisplayName("Nome")
+        </td>
+        <td>
+            @Html.DisplayName("Sobrenome")
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Active)
+        </td>
+        </thead>
+        <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => client.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => client.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => client.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => client.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => client.Active)
+                </td>
+                <td>
+                    <a class="btn btn-info border-1 m-1" @* asp-action="Details" asp-route-id="@client.Id"*@>Detalhes</a>
+                    <a class="btn btn-warning border-1 m-1" @* asp-action="Edit" asp-route-id="@client.Id"*@>Editar</a>
+                    <a class="btn btn-danger border-1 m-1" @* asp-action="Delete" asp-route-id="@client.Id"*@>Remover</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</form>

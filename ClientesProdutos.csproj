@@ -16,8 +16,7 @@
     <ItemGroup>
         <Folder Include="Infrastructure\Validators\Product\" />
         <Folder Include="ViewModels\Product\" />
-        <Folder Include="Views\Clientes\" />
-        <Folder Include="Views\Produtos\" />
+        <Folder Include="Views\Products\" />
     </ItemGroup>
 
 </Project>

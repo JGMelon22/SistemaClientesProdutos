@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using ClientesProdutos.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ClientesProdutos.Controllers;
 

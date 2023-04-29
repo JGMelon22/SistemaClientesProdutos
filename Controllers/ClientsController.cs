@@ -1,30 +1,30 @@
-using ClientesProdutos.Domain.Entities;
 using ClientesProdutos.Infrastructure.Repositories;
+using ClientesProdutos.Interfaces;
 
 namespace ClientesProdutos.Controllers;
 
 public class ClientsController : Controller
 {
-    private readonly ClientRepository _repository;
+    private readonly IClientRepository _repository;
 
-    public ClientsController(ClientRepository repository)
+    public ClientsController(IClientRepository repository)
     {
         _repository = repository;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetClients()
+    public async Task<IActionResult> Index()
     {
         var clients = await _repository.GetClients();
         return clients != null
-            ? Ok(clients)
+            ? await Task.Run(() => View(clients))
             : NoContent();
-        
+    }
+
     // TODO -
     /* Get Client
      * AddClient
-     * UpdateClient
+     * UpdateClientValidator
      * RemoveClient 
      */
-    }
 }

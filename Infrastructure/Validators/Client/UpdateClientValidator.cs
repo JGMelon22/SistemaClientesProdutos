@@ -1,8 +1,8 @@
 namespace ClientesProdutos.Infrastructure.Validators.Client;
 
-public class UpdateClient : AbstractValidator<UpdateClientViewModel>
+public class UpdateClientValidator : AbstractValidator<UpdateClientViewModel>
 {
-    public UpdateClient()
+    public UpdateClientValidator()
     {
         RuleFor(x => x.Id)
             .NotNull().WithMessage("Id do cliente deve ser informado!")
