@@ -1,5 +1,4 @@
 using ClientesProdutos.Domain.Entities;
-using ClientesProdutos.ViewModels.Client;
 
 namespace ClientesProdutos.Infrastructure.Web;
 
