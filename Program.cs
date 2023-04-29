@@ -1,4 +1,6 @@
 using System.Data;
+using ClientesProdutos.Infrastructure.Repositories;
+using ClientesProdutos.Interfaces;
 using FluentValidation.AspNetCore;
 using Microsoft.Data.SqlClient;
 
@@ -16,6 +18,9 @@ builder.Services.AddFluentValidationAutoValidation();
 // SlqClient
 builder.Services.AddScoped<IDbConnection>(x =>
     new SqlConnection(builder.Configuration.GetConnectionString("Default")));
+
+// Repository and Interfaces
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 var app = builder.Build();
 

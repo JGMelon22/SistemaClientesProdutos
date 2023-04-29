@@ -1,6 +1,4 @@
-using System.Data;
 using ClientesProdutos.Domain.Entities;
-using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Interfaces;
 
 namespace ClientesProdutos.Infrastructure.Repositories;
