@@ -15,7 +15,6 @@
 
     <ItemGroup>
         <Folder Include="Infrastructure\EntityConfig\" />
-        <Folder Include="Infrastructure\Validators\" />
         <Folder Include="Interfaces\" />
         <Folder Include="ViewModels\Product\" />
         <Folder Include="Views\Clientes\" />
