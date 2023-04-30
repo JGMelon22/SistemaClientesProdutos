@@ -20,6 +20,18 @@ public class ClientsController : Controller
             : NoContent();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        if (id == null)
+            return NotFound();
+
+        var client = await _repository.GetClient(id);
+        return client != null
+            ? await Task.Run(() => View(client))
+            : NotFound();
+    }
+
     // TODO -
     /* Get Client
      * AddClient

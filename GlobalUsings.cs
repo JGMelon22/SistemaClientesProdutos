@@ -5,3 +5,4 @@ global using ClientesProdutos.ViewModels.Client;
 global using FluentValidation;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Data;
+global using System.ComponentModel.DataAnnotations.Schema;

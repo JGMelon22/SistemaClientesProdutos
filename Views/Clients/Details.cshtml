@@ -1,0 +1,33 @@
+@model GetClientViewModel
+
+<h3 class="text-info"></h3>
+<br/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div class="form-group">
+                <label asp-for="Id" class="text-black fs-4">Id</label>
+                <input class="form-control" type="text" placeholder="@Html.DisplayFor(model => model.Id)" readonly>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="text-black fs-4">Nome</label>
+                <input class="form-control" type="text" placeholder="@Html.DisplayFor(model => model.Name)" readonly>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="text-black fs-4">Sobrenome</label>
+                <input class="form-control" type="text" placeholder="@Html.DisplayFor(model => model.LastName)" readonly>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active">Ativo?</label>
+                @Html.DisplayFor(model => model.Active)
+            </div>
+        </form>
+    </div>
+</div>
+<h4></h4>
+<div></div>
+<div>
+    <a class="btn btn-primary rounded-1 mb-1" asp-action="Index">Retornar a Lista</a>
+    @* <a class="btn btn-warning rounded-1 mb-1" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> *@
+</div>

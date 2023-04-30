@@ -36,15 +36,15 @@ public class ClientRepository : IClientRepository
     public async Task<GetClientViewModel> GetClient(int id)
     {
         var getClientByIdQuery = @"SELECT ID, 
-                                       NAME, 
-                                       LAST_NAME,
-                                       EMAIL,
-                                       ACTIVE 
-                                FROM CLIENTS
-                                WHERE ID = @Id";
+                                          NAME, 
+                                          LAST_NAME,
+                                          EMAIL,
+                                          ACTIVE 
+                                   FROM CLIENTS
+                                   WHERE ID = :Id";
         _dbConnection.Open();
 
-        var result = await _dbConnection.QueryFirstOrDefaultAsync<Client>(getClientByIdQuery, new { Id = id });
+        var result = await _dbConnection.QueryFirstOrDefaultAsync<Client>(getClientByIdQuery, new { ID = id });
         var mappedResult = _mapper.Map<GetClientViewModel>(result);
 
         _dbConnection.Close();
@@ -55,7 +55,7 @@ public class ClientRepository : IClientRepository
     public async Task AddClient(AddClientViewModel newClient)
     {
         var addClientQuery = @"INSERT INTO CLIENTS(NAME, LAST_NAME, EMAIL, ACTIVE)
-                               VALUES(@Name, @LastName, @Email, @Active)";
+                               VALUES(:Name, :Last_Name, :Email, :Active)";
 
         var client = _mapper.Map<Client>(newClient);
 
@@ -69,19 +69,19 @@ public class ClientRepository : IClientRepository
     public async Task<GetClientViewModel> UpdateClient(UpdateClientViewModel updatedClient)
     {
         var findClient = @"SELECT ID, 
-                                       NAME, 
-                                       LAST_NAME,
-                                       EMAIL,
-                                       ACTIVE 
+                                  NAME, 
+                                  LAST_NAME,
+                                  EMAIL,
+                                  ACTIVE 
                                 FROM CLIENTS
-                                WHERE ID = @Id";
+                                WHERE ID = :Id";
 
         var updateClienteQuery = @"UPDATE CLIENTS
-                                   SET NAME=@Name, 
-                                       LAST_NAME=@LastName, 
-                                       EMAIL=@Email, 
-                                       ACTIVE=@Active
-                                   WHERE ID=@Id";
+                                   SET NAME=:Name, 
+                                       LAST_NAME=:Last_Name, 
+                                       EMAIL=:Email, 
+                                       ACTIVE=:Active
+                                   WHERE ID=:Id";
         _dbConnection.Open();
 
         var client =
@@ -112,11 +112,11 @@ public class ClientRepository : IClientRepository
                                   EMAIL,
                                   ACTIVE 
                            FROM CLIENTS
-                           WHERE ID = @Id";
+                           WHERE ID = :Id";
 
         var removeClientQuery = @"DELETE 
                                   FROM CLIENT
-                                  WHERE ID = @Id";
+                                  WHERE ID = :Id";
 
         _dbConnection.Open();
 

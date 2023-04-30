@@ -19,15 +19,12 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Clientes</a>
-                        <div class="dropdown-menu show" data-bs-popper="static">
-                            <a class="dropdown-item" asp-area="" asp-controller="Clients" asp-action="Index">Listar Clientes</a>
+                        <a class="nav-link dropdown-toggle border-1 border-primary rounded-1" style="color: white;" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item text-black" asp-controller="Clients" asp-action="Index">Listar Clientes</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" @* asp-area="" asp-controller="Clients" asp-action="Create"*@>Adicionar Clientes</a>
+                            <a class="dropdown-item text-black" @* a:hov asp-controller="Clients" asp-action="Create"*@>Adicionar Clientes</a>
                         </div>
                     </li>
                 </ul>
