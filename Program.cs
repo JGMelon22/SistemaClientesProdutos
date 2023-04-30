@@ -2,7 +2,7 @@ using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Interfaces;
 using FluentValidation.AspNetCore;
-using Microsoft.Data.SqlClient;
+using Oracle.ManagedDataAccess.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +17,9 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<AddClientViewModel>, AddClientValidator>();
 builder.Services.AddScoped<IValidator<UpdateClientViewModel>, UpdateClientValidator>();
 
-// SlqClient
+// Oracle SlqClient
 builder.Services.AddScoped<IDbConnection>(x =>
-    new SqlConnection(builder.Configuration.GetConnectionString("Default")));
+    new OracleConnection(builder.Configuration.GetConnectionString("Default")));
 
 // Repository and Interfaces
 builder.Services.AddScoped<IClientRepository, ClientRepository>();

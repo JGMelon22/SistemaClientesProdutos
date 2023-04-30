@@ -7,5 +7,5 @@ Sistema simples para cadastro de clientes e produtos feito em ASP .NET Core 6 MV
 - AutoMapper.Extensions.Microsoft.DependencyInjection
 - dapper
 - FluentValidation.AspNetCore
-- Microsoft.Data.SqlClient
+- Oracle.ManagedDataAccess.Core
 
