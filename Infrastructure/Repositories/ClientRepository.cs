@@ -44,7 +44,7 @@ public class ClientRepository : IClientRepository
                                    WHERE ID = :Id";
         _dbConnection.Open();
 
-        var result = await _dbConnection.QueryFirstOrDefaultAsync<Client>(getClientByIdQuery, new { ID = id });
+        var result = await _dbConnection.QueryFirstOrDefaultAsync<Client>(getClientByIdQuery, new { Id = id });
         var mappedResult = _mapper.Map<GetClientViewModel>(result);
 
         _dbConnection.Close();
@@ -55,7 +55,7 @@ public class ClientRepository : IClientRepository
     public async Task AddClient(AddClientViewModel newClient)
     {
         var addClientQuery = @"INSERT INTO CLIENTS(NAME, LAST_NAME, EMAIL, ACTIVE)
-                               VALUES(:Name, :Last_Name, :Email, :Active)";
+                               VALUES(:Name, :LAST_NAME, :Email, :Active)";
 
         var client = _mapper.Map<Client>(newClient);
 
@@ -78,7 +78,7 @@ public class ClientRepository : IClientRepository
 
         var updateClienteQuery = @"UPDATE CLIENTS
                                    SET NAME=:Name, 
-                                       LAST_NAME=:Last_Name, 
+                                       LAST_NAME=:LAST_NAME, 
                                        EMAIL=:Email, 
                                        ACTIVE=:Active
                                    WHERE ID=:Id";
@@ -115,7 +115,7 @@ public class ClientRepository : IClientRepository
                            WHERE ID = :Id";
 
         var removeClientQuery = @"DELETE 
-                                  FROM CLIENT
+                                  FROM CLIENTS
                                   WHERE ID = :Id";
 
         _dbConnection.Open();
@@ -128,7 +128,7 @@ public class ClientRepository : IClientRepository
             return null;
         }
 
-        await _dbConnection.ExecuteAsync(removeClientQuery, id);
+        await _dbConnection.ExecuteAsync(removeClientQuery, new { Id = id });
 
         var mappedClient = _mapper.Map<GetClientViewModel>(client);
 

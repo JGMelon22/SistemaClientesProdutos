@@ -32,10 +32,28 @@ public class ClientsController : Controller
             : NotFound();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var client = await _repository.GetClient(id);
+        return client != null
+            ? await Task.Run(() => View(client))
+            : NotFound();
+    }
+
+    [HttpPost]
+    [ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var clientToRemove = await _repository.RemoveClient(id);
+        return clientToRemove != null
+            ? await Task.Run(() => RedirectToAction(nameof(Index)))
+            : NotFound();
+    }
+
     // TODO -
-    /* Get Client
-     * AddClient
-     * UpdateClientValidator
-     * RemoveClient 
+    /* AddClient
+     * UpdateClientValidator 
      */
 }
