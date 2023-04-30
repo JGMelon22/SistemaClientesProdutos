@@ -1,4 +1,3 @@
-using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Interfaces;
 
 namespace ClientesProdutos.Controllers;

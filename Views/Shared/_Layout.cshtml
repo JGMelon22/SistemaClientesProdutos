@@ -22,15 +22,14 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Clientes</a>
+                        <div class="dropdown-menu show" data-bs-popper="static">
+                            <a class="dropdown-item" asp-area="" asp-controller="Clients" asp-action="Index">Listar Clientes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" @* asp-area="" asp-controller="Clients" asp-action="Create"*@>Adicionar Clientes</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Clients" asp-action="Index">Clientes</a>
-                    </li>
-                    @* <li class="nav-item"> *@
-                    @*     <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a> *@
-                    @* </li> *@
                 </ul>
             </div>
         </div>
@@ -44,7 +43,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2023 - ClientesProdutos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2023 - ClientesProdutos - <a href="https://github.com/JGMelon22/SistemaClientesProdutos">Repositório</a>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
