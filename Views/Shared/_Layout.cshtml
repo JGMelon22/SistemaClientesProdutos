@@ -27,6 +27,14 @@
                             <a class="dropdown-item text-black" @* a:hov asp-controller="Clients" asp-action="Create"*@>Adicionar Clientes</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle border-1 border-primary rounded-1" style="color: white;" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos</a>
+                        <div class="dropdown-menu">
+                            <a id="ListarProdutosBotao" class="dropdown-item text-black" asp-controller="Products" asp-action="Index">Listar Produtos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-black" @* a:hov asp-controller="Clients" asp-action="Create"*@>Adicionar Produtos</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Quirks">Peculiaridades</a>
                     </li>

@@ -21,7 +21,7 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index(int id)
+    public async Task<IActionResult> Details(int id)
     {
         var product = await _repository.GetProduct(id);
         return product != null
@@ -84,7 +84,7 @@ public class ProductsController : Controller
     {
         var productToRemove = await _repository.RemoveProduct(id);
         return productToRemove != null
-            ? await Task.Run(() => RedirectToAction(nameof(System.Index))
+            ? await Task.Run(() => RedirectToAction(nameof(System.Index)))
             : NotFound();
     }
 }

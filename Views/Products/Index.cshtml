@@ -1,0 +1,47 @@
+@model IEnumerable<GetProductViewModel>
+
+<div class="text-primary">Lista de Produtos</div>
+<br/>
+
+<form asp-action="Index" method="get">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <td>
+            @Html.DisplayNameFor(model => model.Id)
+        </td>
+        <td>
+            @Html.DisplayName("Nome")
+        </td>
+        <td>
+            @Html.DisplayName("Preço")
+        </td>
+        <td>
+            @Html.DisplayName("Ativo?")
+        </td>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Name)
+                </td>
+                <td>
+                    @($"{product.Value:c}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Active)
+                </td>
+                <td>
+                    <a class="btn btn-info border-1 m-1" asp-action="Details" asp-route-id="@product.Id">Detalhes</a>
+                    <a class="btn btn-warning border-1 m-1" asp-action="Edit" asp-route-id="@product.Id">Editar</a>
+                    <a class="btn btn-danger border-1 m-1" asp-action="Delete" asp-route-id="@product.Id">Remover</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</form>

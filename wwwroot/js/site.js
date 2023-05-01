@@ -3,8 +3,13 @@
 
 // Write your JavaScript code.
 let botaoListarClientes = document.getElementById("ListarClientesBotao");
+let botaoListarProdutos = document.getElementById("ListarProdutosBotao");
 let spinnerLoading = document.getElementById("LoadingSpinner");
 
 botaoListarClientes.onclick = function () {
     spinnerLoading.style.display = "block";
+}
+
+botaoListarProdutos.onclick = function () {
+    spinnerLoading.style.display = "block"
 }
