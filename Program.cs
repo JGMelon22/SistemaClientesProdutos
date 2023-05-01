@@ -1,6 +1,8 @@
 using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Infrastructure.Validators.Client;
+using ClientesProdutos.Infrastructure.Validators.Product;
 using ClientesProdutos.Interfaces;
+using ClientesProdutos.ViewModels.Product;
 using FluentValidation.AspNetCore;
 using Oracle.ManagedDataAccess.Client;
 
@@ -16,6 +18,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<AddClientViewModel>, AddClientValidator>();
 builder.Services.AddScoped<IValidator<UpdateClientViewModel>, UpdateClientValidator>();
+builder.Services.AddScoped<IValidator<AddProductViewModel>, AddProductValidator>();
+builder.Services.AddScoped<IValidator<UpdateProductViewModel>, UpdateProductValidator>();
 
 // Oracle SlqClient
 builder.Services.AddScoped<IDbConnection>(x =>
