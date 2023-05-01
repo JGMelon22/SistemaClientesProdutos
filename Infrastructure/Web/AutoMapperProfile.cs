@@ -1,5 +1,3 @@
-using ClientesProdutos.Domain.Entities;
-
 namespace ClientesProdutos.Infrastructure.Web;
 
 public class AutoMapperProfile : Profile
@@ -9,5 +7,8 @@ public class AutoMapperProfile : Profile
         CreateMap<Client, GetClientViewModel>();
         CreateMap<AddClientViewModel, Client>();
         CreateMap<UpdateClientViewModel, Client>();
+        CreateMap<Product, GetProductViewModel>();
+        CreateMap<AddProductViewModel, Product>();
+        CreateMap<UpdateProductViewModel, Product>();
     }
 }
