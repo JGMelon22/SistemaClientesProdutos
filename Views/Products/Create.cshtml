@@ -1,0 +1,35 @@
+@model AddProductViewModel
+
+<h3 class="text-success fst-normal">Adicionar um novo Produto</h3>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" type="text" class="form-control w-75 p-1"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" type="number" class="form-control w-75 p-1"/>
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active" class="control-label">Ativo?</label>
+                @Html.CheckBoxFor(model => model.Active)
+            </div>
+            <div class="form-group">
+                <h4>
+                    <h6></h6>
+                    <input class="btn btn-success border-1 rounded-1 m-1" type="submit" value="Criar"/>
+                    <a class="btn btn-secondary border-1 rounded-1 m-1" asp-action="Index">Retornar a Lista</a>
+                </h4>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

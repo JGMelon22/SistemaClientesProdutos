@@ -1,10 +1,10 @@
 @model IEnumerable<GetClientViewModel>
 
-<div class="text-primary">Lista de Clientes</div>
+<div class="text-primary fs-4">Lista de Clientes</div>
 <br/>
 
 <form asp-action="Index" method="get">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-bordered">
         <thead>
         <td>
             @Html.DisplayNameFor(model => model.Id)

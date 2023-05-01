@@ -1,6 +1,6 @@
 @model IEnumerable<GetProductViewModel>
 
-<div class="text-primary">Lista de Produtos</div>
+<div class="text-primary fs-4">Lista de Produtos</div>
 <br/>
 
 <form asp-action="Index" method="get">
@@ -17,6 +17,9 @@
         </td>
         <td>
             @Html.DisplayName("Ativo?")
+        </td>
+        <td class="text-black">
+            Opções
         </td>
         </thead>
         <tbody>

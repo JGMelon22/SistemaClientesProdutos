@@ -50,14 +50,18 @@ public class ProductRepository : IProductRepository
 
     public async Task AddProduct(AddProductViewModel newProduct)
     {
-        var addProductQuery = @"INSERT INTO PRODUCTS(ID, NAME, VALUE, ACTIVE)
-                                VALUES(:Id :Name, :Value, :Active)";
+        var addProductQuery = @"INSERT INTO PRODUCTS(NAME, VALUE, ACTIVE)
+                                VALUES(:Name, :Value, :Active)";
 
         var product = _mapper.Map<Product>(newProduct);
 
+        // Cast to Oracle
+        var activeValue = product.Active ? 1 : 0;
+
         _dbConnection.Open();
 
-        await _dbConnection.ExecuteAsync(addProductQuery, product);
+        await _dbConnection.ExecuteAsync(addProductQuery, new { product.Name, product.Value, Active = activeValue });
+        // await _dbConnection.ExecuteAsync(addProductQuery, product);
 
         _dbConnection.Close();
     }
@@ -88,7 +92,10 @@ public class ProductRepository : IProductRepository
             return null;
         }
 
-        await _dbConnection.ExecuteAsync(updateProductQuery, product);
+        // Cast to Oracle
+        var activeValue = product.Active ? 1 : 0;
+
+        await _dbConnection.ExecuteAsync(updateProductQuery, new { product.Name, product.Value, Active = activeValue });
 
         var mappedProduct = _mapper.Map<GetProductViewModel>(product);
 
