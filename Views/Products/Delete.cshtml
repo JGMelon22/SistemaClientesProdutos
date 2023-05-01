@@ -1,0 +1,35 @@
+@model GetProductViewModel
+
+<div class="alert alert-danger">
+    <strong>Cuidado!</strong>
+    <p class="text-white">Você realmente deseja deletar este produto?</p>
+</div>
+<br/>
+<div class="col-md-4">
+    <form asp-action="Details">
+        <div class="form-group">
+            <label asp-for="Id" class="text-black fs-4">Id</label>
+            <input class="form-control w-auto" type="text" placeholder="@Html.DisplayFor(model => model.Id)" readonly/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="text-black fs-4">Nome</label>
+            <input class="form-control w-auto" type="text" placeholder="@Html.DisplayFor(model => model.Name)" readonly/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Value" class="text-black fs-4">Preço</label>
+            <input class="form-control w-auto" type="text" placeholder="@($"{Model.Value:c}")" readonly/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Active" class="text-black fs-4">Ativo?</label>
+            @Html.DisplayFor(model => model.Active)
+        </div>
+    </form>
+</div>
+<h4></h4>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id"/>
+    <button class="btn btn-danger rounded-1 md-1" onclick="return confirm('Deseja realmente deletar este produto?')">
+        Deletar
+    </button>
+    <a class="btn btn-secondary rounded-1 m-1" asp-action="Index">Retornar a Lista</a>
+</form>

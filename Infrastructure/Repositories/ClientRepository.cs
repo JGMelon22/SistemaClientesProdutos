@@ -67,7 +67,7 @@ public class ClientRepository : IClientRepository
 
     public async Task<GetClientViewModel> UpdateClient(UpdateClientViewModel updatedClient)
     {
-        var findClient = @"SELECT ID, 
+        var findClientQuery = @"SELECT ID, 
                                   NAME, 
                                   LAST_NAME,
                                   EMAIL,
@@ -84,7 +84,7 @@ public class ClientRepository : IClientRepository
         _dbConnection.Open();
 
         var client =
-            await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClient, new { updatedClient.Id });
+            await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClientQuery, new { updatedClient.Id });
 
         if (client == null)
         {
@@ -105,13 +105,13 @@ public class ClientRepository : IClientRepository
 
     public async Task<GetClientViewModel> RemoveClient(int id)
     {
-        var findClient = @"SELECT ID, 
-                                  NAME, 
-                                  LAST_NAME,
-                                  EMAIL,
-                                  ACTIVE 
-                           FROM CLIENTS
-                           WHERE ID = :Id";
+        var findClientQuery = @"SELECT ID, 
+                                       NAME, 
+                                       LAST_NAME,
+                                       EMAIL,
+                                       ACTIVE 
+                                FROM CLIENTS
+                                WHERE ID = :Id";
 
         var removeClientQuery = @"DELETE 
                                   FROM CLIENTS
@@ -119,7 +119,7 @@ public class ClientRepository : IClientRepository
 
         _dbConnection.Open();
 
-        var client = await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClient, new { Id = id });
+        var client = await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClientQuery, new { Id = id });
 
         if (client == null)
         {

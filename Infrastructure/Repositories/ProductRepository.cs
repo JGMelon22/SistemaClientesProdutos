@@ -100,11 +100,11 @@ public class ProductRepository : IProductRepository
     public async Task<GetProductViewModel> RemoveProduct(int id)
     {
         var findProductQuery = @"SELECT ID,
-                                   NAME,
-                                   VALUE,
-                                   ACTIVE
-                            FROM PRODUCTS
-                            WHERE ID = :Id";
+                                        NAME,
+                                        VALUE,
+                                        ACTIVE
+                                 FROM PRODUCTS
+                                 WHERE ID = :Id";
 
         var removeProductQuery = @"DELETE 
                                    FROM PRODUCTS
@@ -120,7 +120,7 @@ public class ProductRepository : IProductRepository
             return null;
         }
 
-        await _dbConnection.ExecuteAsync(removeProductQuery);
+        await _dbConnection.ExecuteAsync(removeProductQuery, new { Id = id });
 
         var mappedProduct = _mapper.Map<GetProductViewModel>(product);
 

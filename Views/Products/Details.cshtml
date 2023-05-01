@@ -1,0 +1,32 @@
+@model GetProductViewModel
+
+<h3 class="text-info border-1 box-shadow">Detalhes do Produto</h3>
+<br/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div class="form-group">
+                <label asp-for="Id" class="text-black fs-4">Id</label>
+                <input class="form-control w-50" type="text" placeholder="@Html.DisplayFor(model => model.Id)" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="text-black fs-4">Nome</label>
+                <input class="form-control w-75" type="text" placeholder="@Html.DisplayFor(model => model.Id)" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="text-black fs-4">Preço</label>
+                <input class="form-control w-75" type="text" placeholder="@($"{Model.Value:c}")" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active" class="text-black fs-4"></label>
+                @Html.DisplayFor(model => model.Active)
+            </div>
+        </form>
+    </div>
+</div>
+<h4></h4>
+<di>
+    <a class="btn btn-secondary rounded-1 mb-1" asp-action="Index">Retornar a Lista</a>
+    <a class="btn btn-warning rounded-1 mb-1" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+</di>
