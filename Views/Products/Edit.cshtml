@@ -1,0 +1,32 @@
+@model GetProductViewModel
+<h3 class="text-warning">Atualizar dados do Produto</h3>
+<hr/>
+<div class="row">
+    <div class="row-md-4"></div>
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="Id"/>
+        <div class="form-group">
+            <label asp-for="Name">Nome</label>
+            <input asp-for="Name" class="form-control w-75"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Value">Preço</label>
+            <input asp-for="Value" type="number" class="form-control w-75"/>
+            <span asp-validation-for="Value" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Active">Ativo?</label>
+            @Html.CheckBoxFor(model => model.Active)
+        </div>
+        <h4></h4>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary rounded-1 md-1" value="Editar"/>
+            <a class="btn btn-secondary rounded-1 md-1" asp-action="Index">Retornar a Lista</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
