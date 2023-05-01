@@ -26,6 +26,7 @@ builder.Services.AddScoped<IDbConnection>(x =>
 
 // Repository and Interfaces
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
