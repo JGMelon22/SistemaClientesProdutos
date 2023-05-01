@@ -1,5 +1,3 @@
-using ClientesProdutos.ViewModels.Product;
-
 namespace ClientesProdutos.Infrastructure.Validators.Product;
 
 public class UpdateProductValidator : AbstractValidator<UpdateProductViewModel>

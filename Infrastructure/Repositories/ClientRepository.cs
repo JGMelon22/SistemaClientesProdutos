@@ -1,4 +1,3 @@
-using ClientesProdutos.Domain.Entities;
 using ClientesProdutos.Interfaces;
 
 namespace ClientesProdutos.Infrastructure.Repositories;

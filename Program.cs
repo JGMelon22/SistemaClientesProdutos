@@ -2,7 +2,6 @@ using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Infrastructure.Validators.Product;
 using ClientesProdutos.Interfaces;
-using ClientesProdutos.ViewModels.Product;
 using FluentValidation.AspNetCore;
 using Oracle.ManagedDataAccess.Client;
 
