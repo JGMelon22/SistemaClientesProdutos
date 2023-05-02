@@ -5,16 +5,20 @@ namespace ClientesProdutos.Controllers;
 public class ClientsController : Controller
 {
     private readonly IClientRepository _repository;
+    private readonly ISortingClientService _sorting;
 
-    public ClientsController(IClientRepository repository)
+    public ClientsController(IClientRepository repository, ISortingClientService sorting)
     {
         _repository = repository;
+        _sorting = sorting;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string sortOrder)
     {
-        var clients = await _repository.GetClients();
+        ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+        var clients = await _sorting.SortClient(sortOrder);
         return clients != null
             ? await Task.Run(() => View(clients))
             : NoContent();

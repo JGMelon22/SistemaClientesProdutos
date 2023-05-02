@@ -10,7 +10,7 @@
             @Html.DisplayNameFor(model => model.Id)
         </td>
         <td>
-            @Html.DisplayName("Nome")
+            <a class="text-black" asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam">Nome</a>
         </td>
         <td>
             @Html.DisplayName("Sobrenome")

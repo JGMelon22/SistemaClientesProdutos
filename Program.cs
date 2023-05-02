@@ -2,6 +2,7 @@ using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Infrastructure.Validators.Product;
 using ClientesProdutos.Interfaces;
+using ClientesProdutos.Services;
 using FluentValidation.AspNetCore;
 using Oracle.ManagedDataAccess.Client;
 
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IDbConnection>(x =>
 // Repository and Interfaces
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISortingClientService, SortingClientService>();
 
 var app = builder.Build();
 
