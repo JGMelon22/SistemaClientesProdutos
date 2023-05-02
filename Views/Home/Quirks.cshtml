@@ -11,7 +11,6 @@
                         <code>WHERE ID = :Id</code>
                     </p>
                 </div>
-                <small class="opacity-50 text-nowrap">now</small>
             </div>
         </a>
         <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
@@ -22,10 +21,9 @@
                     <p class="mb-0 opacity-75">Queries apenas funcionam sem ; no final, ao menos via Dapper.</p>
                     <p>
                         Exemplo:
-                        <code>SELECT ID, NAME, LAST_NAME, EMAIL, ACTIVE FROM CLIENTS</code>
+                        <code>SELECT ID, NAME, LAST_NAME as LastName, EMAIL, ACTIVE FROM CLIENTS</code>
                     </p>
                 </div>
-                <small class="opacity-50 text-nowrap">3d</small>
             </div>
         </a>
         <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
@@ -35,7 +33,21 @@
                     <h6 class="mb-0">Peculiaridade Oracle - 03</h6>
                     <p class="mb-0 opacity-75">Mapear entidades utilizando a data annotation [Column()] não é tão simples quanto parece.</p>
                 </div>
-                <small class="opacity-50 text-nowrap">1w</small>
+            </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0">Peculiaridade Oracle - 04</h6>
+                    <p class="mb-0 opacity-75">Uma forma simples de mapear uma coluna do banco com uma propriedade do C# é criando um Alias no <code>SELECT</code></p>
+                    <p>
+                        Exemplo:
+                        <strong class="text-info">C#: </strong><code>[Column("LAST_NAME")] public string LastName { get; init; } = string.Empty!;</code>
+                        <br/>
+                        &emsp;&emsp;&emsp;&emsp;&ensp;<strong class="text-info">SQL: </strong><code>SELECT ID, NAME, LAST_NAME <strong>AS LastName</strong>, EMAIL, ACTIVE FROM CLIENTS</code>
+                    </p>
+                </div>
             </div>
         </a>
     </div>

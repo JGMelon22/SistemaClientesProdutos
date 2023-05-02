@@ -17,7 +17,7 @@ public class ClientRepository : IClientRepository
     {
         var getClientsQuery = @"SELECT ID, 
                                        NAME, 
-                                       LAST_NAME,
+                                       LAST_NAME AS LastName,
                                        EMAIL,
                                        ACTIVE 
                                 FROM CLIENTS";
@@ -36,7 +36,7 @@ public class ClientRepository : IClientRepository
     {
         var getClientByIdQuery = @"SELECT ID, 
                                           NAME, 
-                                          LAST_NAME,
+                                          LAST_NAME AS LastName,
                                           EMAIL,
                                           ACTIVE 
                                    FROM CLIENTS
@@ -69,7 +69,7 @@ public class ClientRepository : IClientRepository
     {
         var findClientQuery = @"SELECT ID, 
                                   NAME, 
-                                  LAST_NAME,
+                                  LAST_NAME AS LastName,
                                   EMAIL,
                                   ACTIVE 
                                 FROM CLIENTS
@@ -107,7 +107,7 @@ public class ClientRepository : IClientRepository
     {
         var findClientQuery = @"SELECT ID, 
                                        NAME, 
-                                       LAST_NAME,
+                                       LAST_NAME AS LastName,
                                        EMAIL,
                                        ACTIVE 
                                 FROM CLIENTS

@@ -70,7 +70,7 @@ public class ProductsController : Controller
     public async Task<IActionResult> Edit(UpdateProductViewModel updatedProduct)
     {
         if (!ModelState.IsValid)
-            return View(nameof(Create));
+            return View(nameof(Edit));
 
         await _repository.UpdateProduct(updatedProduct);
 

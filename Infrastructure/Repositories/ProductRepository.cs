@@ -96,7 +96,7 @@ public class ProductRepository : IProductRepository
         var activeValue = product.Active ? 1 : 0;
 
         _mapper.Map(updatedProduct, product);
-        
+
         // Atenção! Usamos updatedProduct.Id para indicar ao Dapper que nossa chave no update é o Id
         await _dbConnection.ExecuteAsync(updateProductQuery,
             new { product.Name, product.Value, Active = activeValue, updatedProduct.Id });
