@@ -97,7 +97,7 @@ public class ClientRepository : IClientRepository
         }
 
         // Cast to Oracle
-        var activeValue = client.Active ? 1 : 0;
+        var activeValue = updatedClient.Active ? 1 : 0;
 
         _mapper.Map(updatedClient, client);
 

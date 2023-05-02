@@ -61,7 +61,6 @@ public class ProductRepository : IProductRepository
         _dbConnection.Open();
 
         await _dbConnection.ExecuteAsync(addProductQuery, new { product.Name, product.Value, Active = activeValue });
-        // await _dbConnection.ExecuteAsync(addProductQuery, product);
 
         _dbConnection.Close();
     }
@@ -93,7 +92,7 @@ public class ProductRepository : IProductRepository
         }
 
         // Cast to Oracle
-        var activeValue = product.Active ? 1 : 0;
+        var activeValue = updatedProduct.Active ? 1 : 0;
 
         _mapper.Map(updatedProduct, product);
 
