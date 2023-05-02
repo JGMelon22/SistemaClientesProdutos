@@ -81,7 +81,7 @@ public class ClientRepository : IClientRepository
 
         var updateClienteQuery = @"UPDATE CLIENTS
                                    SET NAME=:Name, 
-                                       LAST_NAME=:LAST_NAME, 
+                                       LAST_NAME=:LastName, 
                                        EMAIL=:Email, 
                                        ACTIVE=:Active
                                    WHERE ID=:Id";

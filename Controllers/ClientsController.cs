@@ -70,8 +70,25 @@ public class ClientsController : Controller
         return await Task.Run(() => RedirectToAction(nameof(Index)));
     }
 
-    // TODO -
-    /* AddClient
-     * UpdateClientValidator 
-     */
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var client = await _repository.GetClient(id);
+        if (client == null)
+            return NotFound();
+
+        return await Task.Run(() => View(client));
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(UpdateClientViewModel updatedClient)
+    {
+        if (!ModelState.IsValid)
+            return View(nameof(Edit));
+
+        await _repository.UpdateClient(updatedClient);
+
+        return await Task.Run(() => RedirectToAction(nameof(Index)));
+    }
 }
