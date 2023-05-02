@@ -54,13 +54,17 @@ public class ClientRepository : IClientRepository
     public async Task AddClient(AddClientViewModel newClient)
     {
         var addClientQuery = @"INSERT INTO CLIENTS(NAME, LAST_NAME, EMAIL, ACTIVE)
-                               VALUES(:Name, :LAST_NAME, :Email, :Active)";
+                               VALUES(:Name, :LastName, :Email, :Active)";
 
         var client = _mapper.Map<Client>(newClient);
 
+        // Cast to Oracle
+        var activeValue = client.Active ? 1 : 0;
+
         _dbConnection.Open();
 
-        await _dbConnection.ExecuteAsync(addClientQuery, client);
+        await _dbConnection.ExecuteAsync(addClientQuery,
+            new { client.Name, client.LastName, client.Email, Active = activeValue });
 
         _dbConnection.Close();
     }
@@ -92,9 +96,13 @@ public class ClientRepository : IClientRepository
             return null;
         }
 
+        // Cast to Oracle
+        var activeValue = client.Active ? 1 : 0;
+
         _mapper.Map(updatedClient, client);
 
-        await _dbConnection.ExecuteAsync(updateClienteQuery, client);
+        await _dbConnection.ExecuteAsync(updateClienteQuery,
+            new { client.Name, client.LastName, client.Email, Active = activeValue, updatedClient.Id });
 
         var mappedClient = _mapper.Map<GetClientViewModel>(client);
 
