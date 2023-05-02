@@ -14,7 +14,7 @@ public class AddClientValidator : AbstractValidator<AddClientViewModel>
             .NotEmpty().WithMessage("Sobrenome do cliente deve ser informado!")
             .Length(1, 50).WithMessage("Sobrenome do cliente deve conter entre 1 a 50 caractéres!");
 
-        RuleFor(x => x.LastName)
+        RuleFor(x => x.Email)
             .NotNull().WithMessage("Email do cliente deve ser informado!")
             .NotEmpty().WithMessage("Email do cliente deve ser informado!")
             .EmailAddress().WithMessage("Um endereço de email válido deve ser informado!")

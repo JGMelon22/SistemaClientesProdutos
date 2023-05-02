@@ -59,6 +59,7 @@ public class ClientsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(AddClientViewModel newClient)
     {
         if (!ModelState.IsValid)

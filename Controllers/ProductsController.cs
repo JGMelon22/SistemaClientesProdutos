@@ -45,6 +45,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(AddProductViewModel newProduct)
     {
         if (!ModelState.IsValid)
