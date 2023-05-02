@@ -52,6 +52,23 @@ public class ClientsController : Controller
             : NotFound();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        return await Task.Run(() => View());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(AddClientViewModel newClient)
+    {
+        if (!ModelState.IsValid)
+            return View(nameof(Create));
+
+        await _repository.AddClient(newClient);
+
+        return await Task.Run(() => RedirectToAction(nameof(Index)));
+    }
+
     // TODO -
     /* AddClient
      * UpdateClientValidator 
