@@ -20,8 +20,8 @@ CREATE TABLE products
 -- Table clients_products
 CREATE TABLE CLIENTS_PRODUCTS
 (
-    id_client  INT,
-    id_product INT,
+    client_id  INT,
+    product_id INT,
     CONSTRAINT fk_client FOREIGN KEY (id_client)
         REFERENCES clients (id),
     CONSTRAINT fk_product FOREIGN KEY (id_product)
