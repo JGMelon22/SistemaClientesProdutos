@@ -16,3 +16,14 @@ CREATE TABLE products
     value  FLOAT        NOT NULL,
     active NUMBER       NOT NULL -- To use boolean FROM ASP NET
 );
+
+-- Table clients_products
+CREATE TABLE CLIENTS_PRODUCTS
+(
+    id_client INT,
+    id_product INT,
+    CONSTRAINT fk_client FOREIGN KEY(id_client)
+        REFERENCES clients(id),
+    CONSTRAINT fk_product FOREIGN KEY(id_product)
+        REFERENCES products(id)
+);
