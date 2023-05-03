@@ -1,20 +1,25 @@
 using ClientesProdutos.Interfaces;
+using ClientesProdutos.Services;
 
 namespace ClientesProdutos.Controllers;
 
 public class ProductsController : Controller
 {
     private readonly IProductRepository _repository;
+    private readonly SortingService<GetProductViewModel> _sortingProduct;
 
-    public ProductsController(IProductRepository repository)
+    public ProductsController(IProductRepository repository, SortingService<GetProductViewModel> sortingProduct)
     {
         _repository = repository;
+        _sortingProduct = sortingProduct;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string sortOrder)
     {
-        var products = await _repository.GetProducts();
+        ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+        var products = await _sortingProduct.SortModel(sortOrder);
         return products != null
             ? await Task.Run(() => View(products))
             : NoContent();

@@ -29,6 +29,7 @@ builder.Services.AddScoped<IDbConnection>(x =>
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<SortingService<GetClientViewModel>, SortingClientService>();
+builder.Services.AddScoped<SortingService<GetProductViewModel>, SortingProductService>();
 
 var app = builder.Build();
 
