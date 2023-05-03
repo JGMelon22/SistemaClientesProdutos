@@ -2,11 +2,9 @@ namespace ClientesProdutos.ViewModels.ClientProduct;
 
 public record GetClientProductViewModel
 {
-    public string Name { get; set; } = string.Empty!;
-    public string LastName { get; set; } = string.Empty!;
-    public string Email { get; set; } = string.Empty!;
-    public bool Active { get; set; }
-    public float Value { get; set; }
-    public int IdClient { get; init; }
-    public int IdProduct { get; init; }
+    public int ClientId { get; init; }
+    public int ProductId { get; init; }
+    public string Name { get; init; } = string.Empty!;
+    public string Email { get; init; } = string.Empty!;
+    public float Value { get; init; }
 }
