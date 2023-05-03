@@ -1,16 +1,17 @@
 using ClientesProdutos.Interfaces;
+using ClientesProdutos.Services;
 
 namespace ClientesProdutos.Controllers;
 
 public class ClientsController : Controller
 {
     private readonly IClientRepository _repository;
-    private readonly ISortingClientService _sorting;
+    private readonly SortingService<GetClientViewModel> _sortingClient;
 
-    public ClientsController(IClientRepository repository, ISortingClientService sorting)
+    public ClientsController(IClientRepository repository, SortingService<GetClientViewModel> sortingClient)
     {
         _repository = repository;
-        _sorting = sorting;
+        _sortingClient = sortingClient;
     }
 
     [HttpGet]
@@ -18,7 +19,7 @@ public class ClientsController : Controller
     {
         ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-        var clients = await _sorting.SortClient(sortOrder);
+        var clients = await _sortingClient.SortModel(sortOrder);
         return clients != null
             ? await Task.Run(() => View(clients))
             : NoContent();

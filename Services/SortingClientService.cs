@@ -1,8 +1,6 @@
-using ClientesProdutos.Interfaces;
-
 namespace ClientesProdutos.Services;
 
-public class SortingClientService : ISortingClientService
+public class SortingClientService : SortingService<GetClientViewModel>
 {
     private readonly IDbConnection _dbConnection;
     private readonly IMapper _mapper;
@@ -13,7 +11,7 @@ public class SortingClientService : ISortingClientService
         _mapper = mapper;
     }
 
-    public async Task<List<GetClientViewModel>> SortClient(string sortOrder)
+    public override async Task<List<GetClientViewModel>> SortModel(string sortOrder)
     {
         var getClientsOrderByAscQuery = @"SELECT ID,
                                                  NAME,

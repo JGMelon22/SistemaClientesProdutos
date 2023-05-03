@@ -25,10 +25,10 @@ builder.Services.AddScoped<IValidator<UpdateProductViewModel>, UpdateProductVali
 builder.Services.AddScoped<IDbConnection>(x =>
     new OracleConnection(builder.Configuration.GetConnectionString("Default")));
 
-// Repository and Interfaces
+// Repository, Interfaces and Services
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ISortingClientService, SortingClientService>();
+builder.Services.AddScoped<SortingService<GetClientViewModel>, SortingClientService>();
 
 var app = builder.Build();
 
