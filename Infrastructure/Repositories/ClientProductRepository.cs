@@ -1,3 +1,5 @@
+// Backup
+
 using ClientesProdutos.ViewModels.ClientProduct;
 
 namespace ClientesProdutos.Infrastructure.Repositories;
@@ -13,28 +15,21 @@ public class ClientProductRepository
         _mapper = mapper;
     }
 
-    // BUG
-    /// <summary>
-    ///     Linka tabelas de produtos
-    ///     e tabela de clientes
-    ///     com a tabela clients_products
-    /// </summary>
-    /// <returns>Pessoas e produtos comprados</returns>
     public async Task<List<GetClientProductViewModel>> GetClientProductsRelation()
     {
         var getClientProductsRelationQuery = @"SELECT cp.CLIENT_ID AS ClientId,
                                                       cp.PRODUCT_ID AS ProductId,
-                                                      c.ID,
-                                                      p.ID,
-                                                      c.CLIENT_NAME AS ClientName, 
-                                                      c.EMAIL AS Email,
-                                                      p.PRODUCT_NAME AS ProductName,
-                                                      p.VALUE
-                                                FROM CLIENTS_PRODUCTS cp 
-                                                INNER JOIN CLIENTS c 
-                                                    ON cp.CLIENT_ID  = c.ID 
-                                                INNER JOIN PRODUCTS p 
-                                                    ON cp.PRODUCT_ID = p.ID";
+                                                      c.Id AS ClientId, 
+                                                      c.Client_Name AS ClientName, 
+                                                      c.Email, 
+                                                      p.Id AS ProductId, 
+                                                      p.Product_Name AS ProductName, 
+                                                      p.Value
+                                               FROM Clients_Products cp
+                                               INNER JOIN Clients c 
+                                                  ON cp.Client_Id = c.Id
+                                               INNER JOIN Products p
+                                                  ON cp.Product_Id = p.Id";
 
         _dbConnection.Open();
 
@@ -51,22 +46,10 @@ public class ClientProductRepository
 
                 return clientProduct;
             },
-            splitOn: "Id");
-
-        // Manual
-        var result = clientsProducts.Select(x => new GetClientProductViewModel
-        {
-            ClientId = x.ClientId,
-            ProductId = x.ProductId,
-            Email = x.Clients.Select(x => x.Email).FirstOrDefault(),
-            ClientName = x.Clients.Select(y => y.ClientName).FirstOrDefault(),
-            ProductName = x.Products.Select(y => y.ProductName).FirstOrDefault(),
-            Value = x.Products.Select(z => z.Value).FirstOrDefault()
-        }).ToList();
-        //
+            splitOn: "Id, ClientId, ProductId");
 
         // Using AutoMapper
-        // var result = clientsProducts.Select(x => _mapper.Map<GetClientProductViewModel>(x)).ToList();
+        var result = clientsProducts.Select(x => _mapper.Map<GetClientProductViewModel>(x)).ToList();
 
         _dbConnection.Close();
 
