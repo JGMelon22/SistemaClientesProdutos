@@ -48,15 +48,8 @@ public class ClientProductRepository
             },
             splitOn: "Id, Name");
 
-        // No AutoMapper for now
-        var result = clientsProducts.Select(x => new GetClientProductViewModel
-        {
-            ClientId = x.ClientId,
-            ProductId = x.ProductId,
-            Email = x.Clients.Select(x => x.Email).FirstOrDefault(),
-            Name = x.Clients.Select(y => y.Name).FirstOrDefault(),
-            Value = x.Products.Select(z => z.Value).FirstOrDefault()
-        }).ToList();
+        // Using AutoMapper
+        var result = clientsProducts.Select(x => _mapper.Map<GetClientProductViewModel>(x)).ToList();
 
         _dbConnection.Close();
 
