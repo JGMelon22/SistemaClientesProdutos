@@ -7,14 +7,40 @@
     <table class="table table-bordered table-hover">
         <thead>
         <td>
-            @Html.DisplayNameFor(model => model.ClientName)
+            @Html.DisplayName("Nome do Cliente")
         </td>
         <td>
             @Html.DisplayNameFor(model => model.Email)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayName("Nome do Produto")
+        </td>
+        <td>
+            @Html.DisplayName("Preço")
         </td>
         </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @($"{item.Value:c}")
+                </td>
+            </tr>
+        }
+        </tbody>
     </table>
 </form>
+<h4></h4>
+<di>
+    <a class="btn btn-secondary rounded-1 mb-1" asp-controller="Home" asp-action="Index">Retornar a Home</a>
+</di>
