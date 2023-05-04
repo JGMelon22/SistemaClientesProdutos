@@ -7,7 +7,7 @@
     <table class="table table-bordered table-hover">
         <thead>
         <td>
-            @Html.DisplayName("Nome do Cliente")
+            <a class="text-black" asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam">Nome do Cliente</a>
         </td>
         <td>
             @Html.DisplayNameFor(model => model.Email)
