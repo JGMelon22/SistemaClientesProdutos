@@ -14,7 +14,7 @@ public class SortingClientService : SortingService<GetClientViewModel>
     public override async Task<List<GetClientViewModel>> SortModel(string sortOrder)
     {
         var getClientsOrderByAscQuery = @"SELECT ID,
-                                                 NAME,
+                                                 CLIENT_NAME AS ClientName,
                                                  LAST_NAME AS LastName,
                                                  EMAIL,
                                                  ACTIVE
@@ -23,16 +23,16 @@ public class SortingClientService : SortingService<GetClientViewModel>
         _dbConnection.Open();
 
         var result = await _dbConnection.QueryAsync<Client>(getClientsOrderByAscQuery);
-        var mappedResult = result.Select(x => _mapper.Map<GetClientViewModel>(x)).ToList().OrderBy(x => x.Name);
+        var mappedResult = result.Select(x => _mapper.Map<GetClientViewModel>(x)).ToList().OrderBy(x => x.ClientName);
 
         switch (sortOrder)
         {
             case "name_desc":
-                mappedResult = mappedResult.OrderByDescending(x => x.Name);
+                mappedResult = mappedResult.OrderByDescending(x => x.ClientName);
                 break;
 
             default:
-                mappedResult = mappedResult.OrderBy(x => x.Name);
+                mappedResult = mappedResult.OrderBy(x => x.ClientName);
                 break;
         }
 

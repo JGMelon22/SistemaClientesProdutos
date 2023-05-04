@@ -14,7 +14,7 @@ public class SortingProductService : SortingService<GetProductViewModel>
     public override async Task<List<GetProductViewModel>> SortModel(string sortOrder)
     {
         var getProductsQuery = @"SELECT ID,
-                                        NAME,
+                                        PRODUCT_NAME AS ProductName,
                                         VALUE,
                                         ACTIVE
                                  FROM PRODUCTS";
@@ -22,16 +22,16 @@ public class SortingProductService : SortingService<GetProductViewModel>
         _dbConnection.Open();
 
         var result = await _dbConnection.QueryAsync<Product>(getProductsQuery);
-        var mappedResult = result.Select(x => _mapper.Map<GetProductViewModel>(x)).ToList().OrderBy(x => x.Name);
+        var mappedResult = result.Select(x => _mapper.Map<GetProductViewModel>(x)).ToList().OrderBy(x => x.ProductName);
 
         switch (sortOrder)
         {
             case "name_desc":
-                mappedResult = mappedResult.OrderByDescending(x => x.Name);
+                mappedResult = mappedResult.OrderByDescending(x => x.ProductName);
                 break;
 
             default:
-                mappedResult = mappedResult.OrderBy(x => x.Name);
+                mappedResult = mappedResult.OrderBy(x => x.ProductName);
                 break;
         }
 

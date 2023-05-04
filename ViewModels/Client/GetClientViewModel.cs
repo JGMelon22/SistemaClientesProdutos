@@ -3,7 +3,7 @@ namespace ClientesProdutos.ViewModels.Client;
 public record GetClientViewModel
 {
     [Key] public int Id { get; init; }
-    public string Name { get; init; } = string.Empty!;
+    public string ClientName { get; init; } = string.Empty!;
 
     public string LastName { get; init; } = string.Empty!;
 

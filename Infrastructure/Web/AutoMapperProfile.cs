@@ -12,11 +12,12 @@ public class AutoMapperProfile : Profile
         CreateMap<Product, GetProductViewModel>();
         CreateMap<AddProductViewModel, Product>();
         CreateMap<UpdateProductViewModel, Product>();
-        
+
         // Join table
         CreateMap<ClientProduct, GetClientProductViewModel>()
-            .ForMember(dest=> dest.Email, opt => opt.MapFrom(src=> src.Clients![0].Email))
-            .ForMember(dest=> dest.Name, opt => opt.MapFrom(src=> src.Clients![0].Name))
-            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Products![0].Value));
+            .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Products![0].ProductName))
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Products![0].Value))
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Clients![0].Email))
+            .ForMember(dest => dest.ClientName, opt => opt.MapFrom(src => src.Clients![0].ClientName));
     }
 }

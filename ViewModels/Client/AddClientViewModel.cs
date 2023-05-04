@@ -2,7 +2,7 @@ namespace ClientesProdutos.ViewModels.Client;
 
 public class AddClientViewModel
 {
-    public string Name { get; set; } = string.Empty!;
+    public string ClientName { get; set; } = string.Empty!;
 
     [Column("LAST_NAME")] public string LastName { get; set; } = string.Empty!;
 

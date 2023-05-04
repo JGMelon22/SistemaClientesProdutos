@@ -8,7 +8,7 @@ public class UpdateProductValidator : AbstractValidator<UpdateProductViewModel>
             .NotNull().WithMessage("Id do produto deve ser informado!")
             .NotEmpty().WithMessage("Id do produto deve ser informado!");
 
-        RuleFor(x => x.Name)
+        RuleFor(x => x.ProductName)
             .NotNull().WithMessage("Nome do produto deve ser informado!")
             .NotEmpty().WithMessage("Nome do produto deve ser informado!")
             .Length(1, 100).WithMessage("Nome do produto deve conter entre 1 a 100 caractéres!");

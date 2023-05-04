@@ -8,7 +8,7 @@ public class UpdateClientValidator : AbstractValidator<UpdateClientViewModel>
             .NotNull().WithMessage("Id do cliente deve ser informado!")
             .NotEmpty().WithMessage("Id do cliente deve ser informado!");
 
-        RuleFor(x => x.Name)
+        RuleFor(x => x.ClientName)
             .NotNull().WithMessage("Nome do cliente deve ser informado!")
             .NotEmpty().WithMessage("Nome do cliente deve ser informado!")
             .Length(1, 50).WithMessage("Nome do cliente deve conter entre 1 a 50 caractéres!");

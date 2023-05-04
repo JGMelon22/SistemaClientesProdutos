@@ -16,7 +16,7 @@ public class ProductRepository : IProductRepository
     public async Task<List<GetProductViewModel>> GetProducts()
     {
         var getProductsQuery = @"SELECT ID,
-                                        NAME,
+                                        PRODUCT_NAME AS ProductName,
                                         VALUE,
                                         ACTIVE
                                  FROM PRODUCTS";
@@ -34,7 +34,7 @@ public class ProductRepository : IProductRepository
     public async Task<GetProductViewModel> GetProduct(int id)
     {
         var getProductByIdQuery = @"SELECT ID,
-                                        NAME,
+                                        PRODUCT_NAME ProductName,
                                         VALUE,
                                         ACTIVE
                                  FROM PRODUCTS
@@ -50,8 +50,8 @@ public class ProductRepository : IProductRepository
 
     public async Task AddProduct(AddProductViewModel newProduct)
     {
-        var addProductQuery = @"INSERT INTO PRODUCTS(NAME, VALUE, ACTIVE)
-                                VALUES(:Name, :Value, :Active)";
+        var addProductQuery = @"INSERT INTO PRODUCTS(PRODUCT_NAME, VALUE, ACTIVE)
+                                VALUES(:ProductName, :Value, :Active)";
 
         var product = _mapper.Map<Product>(newProduct);
 
@@ -60,7 +60,8 @@ public class ProductRepository : IProductRepository
 
         _dbConnection.Open();
 
-        await _dbConnection.ExecuteAsync(addProductQuery, new { product.Name, product.Value, Active = activeValue });
+        await _dbConnection.ExecuteAsync(addProductQuery,
+            new { product.ProductName, product.Value, Active = activeValue });
 
         _dbConnection.Close();
     }
@@ -68,16 +69,16 @@ public class ProductRepository : IProductRepository
     public async Task<GetProductViewModel> UpdateProduct(UpdateProductViewModel updatedProduct)
     {
         var findProductQuery = @"SELECT ID,
-                                   NAME,
+                                   PRODUCT_NAME AS ProductName,
                                    VALUE,
                                    ACTIVE
                             FROM PRODUCTS
                             WHERE ID = :Id";
 
         var updateProductQuery = @"UPDATE PRODUCTS
-                                   SET NAME = :Name, 
-                                   	VALUE = :Value,
-                                   	ACTIVE = :Active
+                                   SET PRODUCT_NAME = :ProductName, 
+                                   VALUE = :Value,
+                                   ACTIVE = :Active
                                    WHERE ID = :Id";
 
         _dbConnection.Open();
@@ -98,7 +99,7 @@ public class ProductRepository : IProductRepository
 
         // Atenção! Usamos updatedProduct.Id para indicar ao Dapper que nossa chave no update é o Id
         await _dbConnection.ExecuteAsync(updateProductQuery,
-            new { product.Name, product.Value, Active = activeValue, updatedProduct.Id });
+            new { product.ProductName, product.Value, Active = activeValue, updatedProduct.Id });
 
         var mappedProduct = _mapper.Map<GetProductViewModel>(product);
 
@@ -110,7 +111,7 @@ public class ProductRepository : IProductRepository
     public async Task<GetProductViewModel> RemoveProduct(int id)
     {
         var findProductQuery = @"SELECT ID,
-                                        NAME,
+                                        PRODUCT_NAME AS ProductName,
                                         VALUE,
                                         ACTIVE
                                  FROM PRODUCTS
