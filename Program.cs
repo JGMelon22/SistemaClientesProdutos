@@ -3,6 +3,7 @@ using ClientesProdutos.Infrastructure.Validators.Client;
 using ClientesProdutos.Infrastructure.Validators.Product;
 using ClientesProdutos.Interfaces;
 using ClientesProdutos.Services;
+using ClientesProdutos.ViewModels.ClientProduct;
 using FluentValidation.AspNetCore;
 using Oracle.ManagedDataAccess.Client;
 
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<SortingService<GetClientViewModel>, SortingClientService>();
 builder.Services.AddScoped<SortingService<GetProductViewModel>, SortingProductService>();
+builder.Services.AddScoped<SortingService<GetClientProductViewModel>, SortingClientProductService>();
 
 var app = builder.Build();
 

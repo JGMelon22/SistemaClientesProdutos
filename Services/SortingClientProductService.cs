@@ -2,12 +2,12 @@ using ClientesProdutos.ViewModels.ClientProduct;
 
 namespace ClientesProdutos.Services;
 
-public class ClientProductService : SortingService<GetClientProductViewModel>
+public class SortingClientProductService : SortingService<GetClientProductViewModel>
 {
     private readonly IDbConnection _dbcConnection;
     private readonly IMapper _mapper;
 
-    public ClientProductService(IDbConnection dbcConnection, IMapper mapper)
+    public SortingClientProductService(IDbConnection dbcConnection, IMapper mapper)
     {
         _dbcConnection = dbcConnection;
         _mapper = mapper;
