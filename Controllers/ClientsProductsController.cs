@@ -2,9 +2,7 @@ using ClientesProdutos.Infrastructure.Repositories;
 
 namespace ClientesProdutos.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ClientsProductsController : ControllerBase
+public class ClientsProductsController : Controller
 {
     private readonly IDbConnection _dbConnection;
     private readonly IMapper _mapper;
@@ -19,9 +17,9 @@ public class ClientsProductsController : ControllerBase
     public async Task<IActionResult> Index()
     {
         var clientProductRepository = new ClientProductRepository(_dbConnection, _mapper);
-        var result = await clientProductRepository.GetClientProductsRelation();
-        return result != null
-            ? Ok(result)
+        var clientsProducts = await clientProductRepository.GetClientProductsRelation();
+        return clientsProducts != null
+            ? await Task.Run(() => View(clientsProducts))
             : NoContent();
     }
 }
