@@ -22,8 +22,10 @@ CREATE TABLE CLIENTS_PRODUCTS
 (
     client_id  INT,
     product_id INT,
-    CONSTRAINT fk_client FOREIGN KEY (id_client)
-        REFERENCES clients (id),
-    CONSTRAINT fk_product FOREIGN KEY (id_product)
+    CONSTRAINT fk_client FOREIGN KEY (client_id)
+        REFERENCES clients (id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_product FOREIGN KEY (product_id)
         REFERENCES products (id)
+        ON DELETE CASCADE
 );

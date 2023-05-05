@@ -1,4 +1,3 @@
-using ClientesProdutos.Infrastructure.Repositories;
 using ClientesProdutos.Services;
 using ClientesProdutos.ViewModels.ClientProduct;
 
@@ -6,9 +5,10 @@ namespace ClientesProdutos.Controllers;
 
 public class ClientsProductsController : Controller
 {
+    private readonly IMapper _mapper;
+
     // private readonly IDbConnection _dbConnection;
     private readonly SortingService<GetClientProductViewModel> _sortingClientProduct;
-    private readonly IMapper _mapper;
 
     public ClientsProductsController(SortingService<GetClientProductViewModel> sortingClientProduct, IMapper mapper)
     {
