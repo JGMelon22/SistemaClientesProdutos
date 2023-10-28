@@ -17,19 +17,19 @@ public class ClientProductRepository
 
     public async Task<List<GetClientProductViewModel>> GetClientProductsRelation()
     {
-        var getClientProductsRelationQuery = @"SELECT cp.CLIENT_ID AS ClientId,
-                                                      cp.PRODUCT_ID AS ProductId,
-                                                      c.Id AS ClientId, 
-                                                      c.Client_Name AS ClientName, 
-                                                      c.Email, 
-                                                      p.Id AS ProductId, 
-                                                      p.Product_Name AS ProductName, 
-                                                      p.Value
-                                               FROM Clients_Products cp
-                                               INNER JOIN Clients c 
-                                                  ON cp.Client_Id = c.Id
-                                               INNER JOIN Products p
-                                                  ON cp.Product_Id = p.Id";
+        var getClientProductsRelationQuery = @"SELECT DISTINCT (p.Product_Name) AS ProductName,
+                                                                p.Id AS ProductId,
+                                                                p.Value,
+                                                                c.Client_Name AS ClientName, 
+                                                                c.Id AS ClientId, 
+                                                                c.Email,
+                                                                cp.CLIENT_ID AS ClientId,
+                                                                cp.PRODUCT_ID AS ProductId
+                                               FROM PRODUCTS p
+                                               INNER JOIN CLIENTS_PRODUCTS cp
+                                               	ON p.ID = cp.PRODUCT_ID 
+                                               INNER JOIN CLIENTS c 
+                                               	ON c.ID = cp.CLIENT_ID;";
 
         _dbConnection.Open();
 

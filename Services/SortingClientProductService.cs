@@ -15,14 +15,14 @@ public class SortingClientProductService : SortingService<GetClientProductViewMo
 
     public override async Task<List<GetClientProductViewModel>> SortModel(string sortOrder)
     {
-        var getClientProductsRelationQuery = @"SELECT cp.CLIENT_ID AS ClientId,
-                                                      cp.PRODUCT_ID AS ProductId,
-                                                      c.Id AS ClientId, 
-                                                      c.Client_Name AS ClientName, 
-                                                      c.Email, 
-                                                      p.Id AS ProductId, 
-                                                      p.Product_Name AS ProductName, 
-                                                      p.Value
+        var getClientProductsRelationQuery = @"SELECT DISTINCT cp.CLIENT_ID AS ClientId,
+                                                               cp.PRODUCT_ID AS ProductId,
+                                                               c.Id AS ClientId, 
+                                                               c.Client_Name AS ClientName, 
+                                                               c.Email, 
+                                                               p.Id AS ProductId, 
+                                                               p.Product_Name AS ProductName, 
+                                                               p.Value
                                                FROM Clients_Products cp
                                                INNER JOIN Clients c 
                                                   ON cp.Client_Id = c.Id
