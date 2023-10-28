@@ -1,7 +1,9 @@
 namespace ClientesProdutos.Domain.Entities;
 
-public class Client : BaseModel
+public class Client
 {
+    [Key] public int Id { get; set; }
+
     public string ClientName { get; set; } = string.Empty!;
     public string LastName { get; set; } = string.Empty!;
     public string Email { get; set; } = string.Empty!;
