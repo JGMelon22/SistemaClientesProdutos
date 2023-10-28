@@ -6,5 +6,5 @@ public interface IClientRepository
     Task<GetClientViewModel> GetClient(int id);
     Task AddClient(AddClientViewModel newClient);
     Task<GetClientViewModel> UpdateClient(UpdateClientViewModel updatedClient);
-    Task<GetClientViewModel> RemoveClient(int id);
+    Task RemoveClient(int id);
 }

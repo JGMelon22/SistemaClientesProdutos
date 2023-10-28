@@ -88,9 +88,10 @@ public class ProductsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var productToRemove = await _repository.RemoveProduct(id);
-        return productToRemove != null
-            ? await Task.Run(() => RedirectToAction(nameof(System.Index)))
-            : NotFound();
+        if (id == null)
+            return NotFound();
+
+        await _repository.RemoveProduct(id);
+        return await Task.Run(() => RedirectToAction(nameof(System.Index)));
     }
 }

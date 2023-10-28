@@ -111,36 +111,16 @@ public class ClientRepository : IClientRepository
         return mappedClient;
     }
 
-    public async Task<GetClientViewModel> RemoveClient(int id)
+    public async Task RemoveClient(int id)
     {
-        var findClientQuery = @"SELECT ID, 
-                                       CLIENT_NAME AS ClientName, 
-                                       LAST_NAME AS LastName,
-                                       EMAIL,
-                                       ACTIVE 
-                                FROM CLIENTS
-                                WHERE ID = :Id";
-
         var removeClientQuery = @"DELETE 
                                   FROM CLIENTS
                                   WHERE ID = :Id";
 
         _dbConnection.Open();
 
-        var client = await _dbConnection.QueryFirstOrDefaultAsync<Client>(findClientQuery, new { Id = id });
-
-        if (client == null)
-        {
-            _dbConnection.Close();
-            return null;
-        }
-
         await _dbConnection.ExecuteAsync(removeClientQuery, new { Id = id });
 
-        var mappedClient = _mapper.Map<GetClientViewModel>(client);
-
         _dbConnection.Close();
-
-        return mappedClient;
     }
 }

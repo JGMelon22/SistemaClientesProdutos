@@ -6,5 +6,5 @@ public interface IProductRepository
     Task<GetProductViewModel> GetProduct(int id);
     Task AddProduct(AddProductViewModel newProduct);
     Task<GetProductViewModel> UpdateProduct(UpdateProductViewModel updatedProduct);
-    Task<GetProductViewModel> RemoveProduct(int id);
+    Task RemoveProduct(int id);
 }

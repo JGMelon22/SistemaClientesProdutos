@@ -51,10 +51,11 @@ public class ClientsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var clientToRemove = await _repository.RemoveClient(id);
-        return clientToRemove != null
-            ? await Task.Run(() => RedirectToAction(nameof(Index)))
-            : NotFound();
+        if (id == null)
+            return NotFound();
+        
+        await _repository.RemoveClient(id);
+        return await Task.Run(() => RedirectToAction(nameof(Index)));
     }
 
     [HttpGet]

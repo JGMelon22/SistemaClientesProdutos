@@ -108,35 +108,16 @@ public class ProductRepository : IProductRepository
         return mappedProduct;
     }
 
-    public async Task<GetProductViewModel> RemoveProduct(int id)
+    public async Task RemoveProduct(int id)
     {
-        var findProductQuery = @"SELECT ID,
-                                        PRODUCT_NAME AS ProductName,
-                                        VALUE,
-                                        ACTIVE
-                                 FROM PRODUCTS
-                                 WHERE ID = :Id";
-
         var removeProductQuery = @"DELETE 
                                    FROM PRODUCTS
                                    WHERE ID = :Id";
 
         _dbConnection.Open();
 
-        var product = await _dbConnection.QueryFirstOrDefaultAsync<Product>(findProductQuery, new { Id = id });
-
-        if (product == null)
-        {
-            _dbConnection.Close();
-            return null;
-        }
-
         await _dbConnection.ExecuteAsync(removeProductQuery, new { Id = id });
 
-        var mappedProduct = _mapper.Map<GetProductViewModel>(product);
-
         _dbConnection.Close();
-
-        return mappedProduct;
     }
 }
