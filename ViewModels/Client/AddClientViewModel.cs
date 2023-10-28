@@ -1,11 +1,11 @@
 namespace ClientesProdutos.ViewModels.Client;
 
-public class AddClientViewModel
+public record AddClientViewModel
 {
-    public string ClientName { get; set; };
+    public required string ClientName { get; init; }
 
-    [Column("LAST_NAME")] public string LastName { get; set; };
+    [Column("LAST_NAME")] public required string LastName { get; init; }
 
-    public string Email { get; set; };
-    public bool Active { get; set; }
+    public required string Email { get; init; }
+    public bool Active { get; init; }
 }

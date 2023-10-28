@@ -1,10 +1,10 @@
 namespace ClientesProdutos.ViewModels.Client;
 
-public class UpdateClientViewModel
+public record UpdateClientViewModel
 {
-    [Key] public int Id { get; set; }
-    public string ClientName { get; set; };
-    public string LastName { get; set; };
-    public string Email { get; set; };
-    public bool Active { get; set; }
+    [Key] public int Id { get; init; }
+    public required string ClientName { get; init; }
+    public required string LastName { get; init; }
+    public required string Email { get; init; }
+    public bool Active { get; init; }
 }
