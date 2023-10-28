@@ -3,10 +3,10 @@ namespace ClientesProdutos.ViewModels.Client;
 public record GetClientViewModel
 {
     [Key] public int Id { get; init; }
-    public string ClientName { get; init; } = string.Empty!;
+    public required string ClientName { get; init; }
 
-    public string LastName { get; init; } = string.Empty!;
+    public required string LastName { get; init; }
 
-    public string Email { get; init; } = string.Empty!;
+    public required string Email { get; init; }
     public bool Active { get; init; }
 }
