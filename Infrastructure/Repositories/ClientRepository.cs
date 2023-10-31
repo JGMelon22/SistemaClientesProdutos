@@ -80,8 +80,8 @@ public class ClientRepository : IClientRepository
                                 WHERE ID = :Id";
 
         var updateClienteQuery = @"UPDATE CLIENTS
-                                   SET CLIENT_NAME:ClientName, 
-                                       LAST_NAME=:LastName, 
+                                   SET CLIENT_NAME = :ClientName, 
+                                       LAST_NAME =:LastName, 
                                        EMAIL=:Email, 
                                        ACTIVE=:Active
                                    WHERE ID=:Id";
